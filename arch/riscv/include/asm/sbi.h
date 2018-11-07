@@ -25,6 +25,7 @@
 #define SBI_REMOTE_SFENCE_VMA 6
 #define SBI_REMOTE_SFENCE_VMA_ASID 7
 #define SBI_SHUTDOWN 8
+#define SBI_DUMP 9
 
 #define SBI_CALL(which, arg0, arg1, arg2) ({			\
 	register uintptr_t a0 asm ("a0") = (uintptr_t)(arg0);	\
@@ -65,6 +66,11 @@ static inline void sbi_set_timer(uint64_t stime_value)
 static inline void sbi_shutdown(void)
 {
 	SBI_CALL_0(SBI_SHUTDOWN);
+}
+
+static inline void sbi_dump(void)
+{
+	SBI_CALL_0(SBI_DUMP);
 }
 
 static inline void sbi_clear_ipi(void)
